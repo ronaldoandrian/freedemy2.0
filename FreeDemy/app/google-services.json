@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "200893641059",
+    "firebase_url": "https://freedemy-5fdec.firebaseio.com",
+    "project_id": "freedemy-5fdec",
+    "storage_bucket": "freedemy-5fdec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200893641059:android:5ee4b5223a188cf52ca356",
+        "android_client_info": {
+          "package_name": "com.master.mobile.freedemy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200893641059-j9i65vfqqn6lincioomgig7992fr066i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqowM1kwgrGeWV9rXp93ecaL4N9RXZ3iI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200893641059-j9i65vfqqn6lincioomgig7992fr066i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

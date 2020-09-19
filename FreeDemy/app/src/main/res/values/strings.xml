@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">FreeDemy</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Mot de passe</string>
+    <string name="login_confirm_password_hint">Confirmer votre mot de passe</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="content_description_media">freedemy_logo</string>
+    <string name="freedemyLAbel">FreeDemy</string>
+    <string name="devise">Apprendre gratuitement et librement</string>
+    <string name="copyright">Projet mobile - ETU000610</string>
+</resources>
