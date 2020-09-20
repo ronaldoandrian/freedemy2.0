@@ -10,10 +10,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.master.mobile.freedemy.classes.models.CoursModel;
+import com.master.mobile.freedemy.ui.cours.CoursActivity;
 import com.master.mobile.freedemy.ui.home.HomeFragment;
 import com.master.mobile.freedemy.ui.home.HomeViewModel;
 
@@ -49,6 +52,8 @@ public class FireBaseDataAccess {
     public void getCoursData(HomeFragment fragment, View root) {
         HomeViewModel model = new HomeViewModel();
         db.collection("cours")
+                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(10)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -68,6 +73,24 @@ public class FireBaseDataAccess {
                         } else {
                             fragment.putErrorCours(root);
                         }
+                    }
+                });
+    }
+
+    public void getCoursById(String cours_id, CoursActivity coursActivity) {
+        db.collection("cours").document(cours_id)
+                .get()
+                .addOnCompleteListener((OnCompleteListener<DocumentSnapshot>) task -> {
+                    if (task.isSuccessful()) {
+                        CoursModel coursModel = new CoursModel();
+                        coursModel.setId(task.getResult().getId());
+                        coursModel.setTitre(task.getResult().get("titre").toString());
+                        coursModel.setDescription(task.getResult().get("description").toString());
+                        coursModel.setContenu(task.getResult().get("contenu").toString());
+                        coursModel.setDate(task.getResult().get("date").toString());
+                        coursActivity.putData(coursModel);
+                    } else {
+                        coursActivity.putErrorCours();
                     }
                 });
     }

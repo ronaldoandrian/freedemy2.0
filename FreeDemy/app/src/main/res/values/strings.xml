@@ -39,4 +39,7 @@
     <string name="aucun_cours">Aucun cours à afficher pour le moment. Veuillez rafraichir ou essayer ulterieurement.</string>
     <string name="aucun_video">Aucune vidéo à afficher pour le moment. Veuillez rafraichir ou essayer ulterieurement.</string>
     <string name="chargement">Chargement en cours...</string>
+    <string name="detail_cours">Détails du cours</string>
+    <string name="erreur_chargement_cours">Nous ne parvenons pas à charger le cours pour moment. Réessayer plus tard</string>
+    <string name="video_support">Vidéo support</string>
 </resources>

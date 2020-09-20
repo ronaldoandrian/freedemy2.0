@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.master.mobile.freedemy.ui.home.HomeFragment"
+    tools:context=".ui.cours.CoursActivity"
     style="@style/parent.contentLayout">
 
     <androidx.core.widget.NestedScrollView
@@ -17,18 +17,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginBottom="20dp"
-                    android:minHeight="150dp"
+                    android:layout_marginBottom="5dp"
+                    android:minHeight="100dp"
                     app:cardBackgroundColor="@color/designMainColor"
                     app:cardCornerRadius="16dp"
                     app:cardPreventCornerOverlap="false">
@@ -47,6 +46,7 @@
                             android:padding="10dp">
 
                             <TextView
+                                android:id="@+id/titre_details_cours"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/apprenez"
@@ -55,6 +55,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/description_details_cours"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
@@ -65,14 +66,6 @@
 
                         </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:adjustViewBounds="true"
-                            android:cropToPadding="true"
-                            android:elevation="44dp"
-                            android:src="@drawable/hero" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -88,27 +81,9 @@
                     style="@style/viewParent.headerText"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="@string/top_cours" />
-
-                <TextView
-                    style="@style/viewParent"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/voir_tout"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/headerMoreTextSize"
-                    android:textStyle="bold" />
+                    android:text="@string/detail_cours" />
 
             </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/liste_cours"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include layout="@layout/cours_item_list" />
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/loading_cours"
@@ -183,7 +158,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/aucun_cours"
+                    android:text="@string/erreur_chargement_cours"
                     android:textColor="@color/miniDescription"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -192,10 +167,49 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contenu_cours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/miniDescription"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp">
+
+                <TextView
+                    style="@style/viewParent.headerText"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/video_support" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player_view"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

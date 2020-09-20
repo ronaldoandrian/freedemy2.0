@@ -33,8 +33,6 @@ public class HomeFragment extends Fragment {
     FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    String[] titreArray;
-    String[] descriptionArray;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -63,8 +61,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void initCours(View root) {
-        /*LinearLayout liste_cours_layout = root.findViewById(R.id.liste_cours);
-        liste_cours_layout.removeAllViewsInLayout();*/
 
         new FireBaseDataAccess().getCoursData(this, root);
 
@@ -81,15 +77,7 @@ public class HomeFragment extends Fragment {
             LinearLayout loading_spinner_layout = root.findViewById(R.id.loading_layout);
             loading_spinner_layout.setVisibility(View.GONE);
         }
-        titreArray = new String[homeViewModel.getListeCours().size()];
-        descriptionArray = new String[homeViewModel.getListeCours().size()];
-        int index = 0;
-        for (CoursModel model: homeViewModel.getListeCours()) {
-            titreArray[index] = model.getTitre();
-            descriptionArray[index] = model.getDescription();
-            index++;
-        }
-        ListCoursAdapter coursAdapter = new ListCoursAdapter(getActivity(), titreArray, descriptionArray);
+        ListCoursAdapter coursAdapter = new ListCoursAdapter(getActivity(), homeViewModel.getListeCours());
         recyclerView.setAdapter(coursAdapter);
     }
 
