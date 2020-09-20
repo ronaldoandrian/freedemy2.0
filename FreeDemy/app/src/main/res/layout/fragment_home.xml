@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginBottom="20dp"
-                    android:minHeight="200dp"
+                    android:minHeight="150dp"
                     app:cardBackgroundColor="@color/designMainColor"
                     app:cardCornerRadius="16dp"
                     app:cardPreventCornerOverlap="false">
@@ -49,7 +49,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Continue to \nWebdeveloper Course"
+                                android:text="@string/apprenez"
                                 android:textColor="@color/whiteBodyColor"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
@@ -58,7 +58,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:text="60% Complete"
+                                android:text="@string/etudiez"
                                 android:textColor="@color/whiteBodyColor"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -88,34 +88,109 @@
                     style="@style/viewParent.headerText"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Tutorials" />
+                    android:text="@string/top_cours" />
 
                 <TextView
                     style="@style/viewParent"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="See All"
+                    android:text="@string/voir_tout"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/headerMoreTextSize"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
-            <!--remove the below layout with recycler view, use card poplar courses as model for design-->
-
             <LinearLayout
+                android:id="@+id/liste_cours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/card_popular_courses" />
+                <include layout="@layout/cours_item_list" />
+            </LinearLayout>
 
-                <include layout="@layout/card_popular_courses" />
+            <LinearLayout
+                android:id="@+id/loading_cours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <include layout="@layout/card_popular_courses" />
+                <LinearLayout
+                    android:id="@+id/loading_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:id="@+id/loading_spinner"
+                            android:layout_width="35dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:cropToPadding="true"
+                            android:maxWidth="70dp"
+                            android:maxHeight="70dp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/chargement"
+                            android:textColor="@color/miniDescription"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:maxLines="3"
+                            android:layout_marginBottom="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/aucun_cours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aucun_cours"
+                    android:textColor="@color/miniDescription"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:maxLines="3"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -126,32 +201,51 @@
                     style="@style/viewParent.headerText"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="Frutorials" />
+                    android:text="@string/apprendre_video" />
 
                 <TextView
                     style="@style/viewParent"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="See All"
+                    android:text="@string/voir_tout"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/headerMoreTextSize"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
-            <!--remove the below layout with recycler view, use card poplar courses as model for design-->
-
-            <LinearLayout
+            <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:fillViewport="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-                <include layout="@layout/card_frutorials" />
+                    <include layout="@layout/card_frutorials" />
 
-                <include layout="@layout/card_frutorials" />
+                </LinearLayout>
+            </HorizontalScrollView>
 
-                <include layout="@layout/card_frutorials" />
+            <LinearLayout
+                android:id="@+id/aucun_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aucun_video"
+                    android:textColor="@color/miniDescription"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:maxLines="3"
+                    android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
 

@@ -38,6 +38,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     public void checkLoginStatus() {
         FirebaseUser user = mAuth.getCurrentUser();
         boolean     isConnected = user != null;
+        if(isConnected) isConnected = user.isEmailVerified();
         Handler handler = new Handler();
 
         if (isConnected) {

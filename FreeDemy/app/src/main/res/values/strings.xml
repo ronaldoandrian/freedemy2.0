@@ -3,9 +3,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="freedemy_user">Utilisateur FreeDemy</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">user@freedemy.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">A propos de FreeDemy</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Mot de passe</string>
     <string name="login_confirm_password_hint">Confirmer votre mot de passe</string>
@@ -31,4 +31,12 @@
     <string name="cours_menu">Mes cours</string>
     <string name="menu_menu">Menu</string>
     <string name="menu_search">Recherche</string>
+    <string name="apprendre_video">Apprendre en vidéo</string>
+    <string name="voir_tout">Voir tout</string>
+    <string name="etudiez">Étudiez à tout moment, n\'importe où et n\'importe quand</string>
+    <string name="apprenez">Apprenez à votre rythme.</string>
+    <string name="top_cours">Derniers cours</string>
+    <string name="aucun_cours">Aucun cours à afficher pour le moment. Veuillez rafraichir ou essayer ulterieurement.</string>
+    <string name="aucun_video">Aucune vidéo à afficher pour le moment. Veuillez rafraichir ou essayer ulterieurement.</string>
+    <string name="chargement">Chargement en cours...</string>
 </resources>

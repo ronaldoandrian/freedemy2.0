@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.master.mobile.freedemy.MainActivity;
 import com.master.mobile.freedemy.R;
+import com.master.mobile.freedemy.classes.data.FireBaseDataAccess;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -90,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.sendEmailVerification()
                 .addOnCompleteListener(this, (OnCompleteListener) task1 -> {
                     if (task1.isSuccessful()) {
+                        new FireBaseDataAccess().saveUser(user.getUid(), "FreeDemy User");
                         verificationEmailSent();
                     } else {
                         stopAnimation();

@@ -1,19 +1,27 @@
 package com.master.mobile.freedemy.ui.home;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+import com.master.mobile.freedemy.classes.models.CoursModel;
 
-    private MutableLiveData<String> mText;
+import java.util.ArrayList;
+
+public class HomeViewModel extends ViewModel {
+    private ArrayList<CoursModel> listeCours;
 
     public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        listeCours = new ArrayList<CoursModel>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public ArrayList<CoursModel> getListeCours() {
+        return listeCours;
+    }
+
+    public void setListeCours(ArrayList<CoursModel> listeCours) {
+        this.listeCours = listeCours;
     }
 }
