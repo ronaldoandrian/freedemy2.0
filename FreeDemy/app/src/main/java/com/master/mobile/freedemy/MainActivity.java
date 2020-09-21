@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.master.mobile.freedemy.account.LoginActivity;
+import com.master.mobile.freedemy.classes.models.UserModel;
+import com.master.mobile.freedemy.ui.home.HomeViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
+    private UserModel userModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,10 +93,18 @@ public class MainActivity extends AppCompatActivity {
         else {
             View nav = getLayoutInflater().inflate(R.layout.nav_header_main, null);
             if(nav != null) {
-                TextView view = nav.findViewById(R.id.mailMainTextView);
+                TextView view = findViewById(R.id.mailMainTextView);
                 if (view != null) view.setText(user.getEmail());
             }
         }
+    }
+
+    public void putData(UserModel model) {
+        TextView freedemy_user_name = findViewById(R.id.freedemy_user_name);
+        freedemy_user_name.setText(model.getPseudo());
+        TextView mailMainTextView = findViewById(R.id.mailMainTextView);
+        mailMainTextView.setText(mAuth.getCurrentUser().getEmail());
+        userModel = model;
     }
 
     private void notConnected() {
@@ -108,5 +119,13 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
     }
 }

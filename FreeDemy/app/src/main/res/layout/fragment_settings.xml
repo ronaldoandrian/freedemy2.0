@@ -59,15 +59,10 @@
             android:text="@string/profil"/>
 
         <TextView
+            android:id="@+id/editPseudoTextView"
             style="@style/viewParent.headerText.settingsTextIcon"
             android:drawableLeft="@drawable/ic_edit_profile"
             android:text="@string/modifier_profil" />
-
-        <TextView
-            style="@style/viewParent.headerText.settingsTextIcon"
-            android:drawableLeft="@drawable/ic_edit_password"
-            android:layout_marginTop="10dp"
-            android:text="@string/changer_mot_de_passe" />
 
         <TextView
             style="@style/viewParent.headerText.settingsMiniTitle"

@@ -1,5 +1,6 @@
 package com.master.mobile.freedemy.classes.data;
 
+import android.content.DialogInterface;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +17,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.master.mobile.freedemy.MainActivity;
 import com.master.mobile.freedemy.classes.models.CoursModel;
+import com.master.mobile.freedemy.classes.models.UserModel;
 import com.master.mobile.freedemy.ui.cours.CoursActivity;
 import com.master.mobile.freedemy.ui.home.HomeFragment;
 import com.master.mobile.freedemy.ui.home.HomeViewModel;
 import com.master.mobile.freedemy.ui.search.SearchFragment;
+import com.master.mobile.freedemy.ui.settings.SettingsFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -145,5 +149,52 @@ public class FireBaseDataAccess {
                         }
                     }
                 });
+    }
+
+    public void getUserById(MainActivity activity, String id) {
+        db.collection("users")
+                .whereEqualTo("id", id)
+                .limit(1)
+                .get()
+                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                    if (task.isSuccessful()) {
+                        UserModel userModel = new UserModel();
+                        userModel.setId(task.getResult().getDocuments().get(0).get("id").toString());
+                        userModel.setPseudo(task.getResult().getDocuments().get(0).get("pseudo").toString());
+                        activity.putData(userModel);
+                    } else {
+
+                    }
+                });
+    }
+
+    public void updateUser(String id, String pseudo, SettingsFragment fragment, View root) {
+        db.collection("users")
+                .whereEqualTo("id", id)
+                .limit(1)
+                .get()
+                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                    if (task.isSuccessful()) {
+                        //task.getResult().getId();
+                        db.collection("users").document(task.getResult().getDocuments().get(0).getId())
+                                .update("pseudo", pseudo)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        fragment.putData(pseudo, root);
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        fragment.putError();
+                                    }
+                                });
+                    } else {
+                        fragment.putError();
+                    }
+                });
+
+
     }
 }
