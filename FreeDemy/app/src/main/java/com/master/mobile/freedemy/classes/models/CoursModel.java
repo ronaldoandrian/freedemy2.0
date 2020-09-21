@@ -8,14 +8,16 @@ public class CoursModel {
     private String description;
     private String contenu;
     private String date;
+    private String videoId;
 
-    public CoursModel(String id, String titre, String description, String contenu, String date) {
+    public CoursModel(String id, String titre, String description, String contenu, String date, String videoId) {
         this.id = id;
         this.titre = titre;
         this.titre = titre;
         this.description = description;
         this.contenu = contenu;
         this.date = date;
+        this.videoId = videoId;
     }
 
     public CoursModel() {
@@ -59,5 +61,13 @@ public class CoursModel {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getVideoId() {
+        return videoId = "OZLUa8JUR18";
+    }
+
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 }

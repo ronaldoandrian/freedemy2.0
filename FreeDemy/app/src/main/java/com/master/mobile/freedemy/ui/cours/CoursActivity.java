@@ -26,6 +26,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class CoursActivity extends AppCompatActivity {
     private String cours_id;
     private String API_KEY = "AIzaSyABC2-2UrfFJ-WWh4HpCxsUowk0Fd5bPg4";
+    private YouTubePlayerView youTubePlayerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,8 @@ public class CoursActivity extends AppCompatActivity {
     }
 
     private void initComponent() {
+        youTubePlayerView = findViewById(R.id.youtube_player_view);
+        youTubePlayerView.setVisibility(View.GONE);
         try {
             GifDrawable gifFromAssets = new GifDrawable(getAssets(), "loading.gif" );
             GifImageView gifImage = findViewById(R.id.loading_spinner);
@@ -56,20 +59,12 @@ public class CoursActivity extends AppCompatActivity {
         TextView contenu_cours = findViewById(R.id.contenu_cours);
         contenu_cours.setText(Html.fromHtml(model.getContenu()));
 
-        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
-        youTubePlayerView.initialize(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onApiChange(YouTubePlayer youTubePlayer) {
-                super.onApiChange(youTubePlayer);
-            }
-        });
-        getLifecycle().addObserver(youTubePlayerView);
+        youTubePlayerView.setVisibility(View.VISIBLE);
 
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "S-sJp1FfG7Q";
-                youTubePlayer.loadVideo(videoId, 0);
+                youTubePlayer.loadVideo(model.getVideoId(), 0);
             }
         });
     }

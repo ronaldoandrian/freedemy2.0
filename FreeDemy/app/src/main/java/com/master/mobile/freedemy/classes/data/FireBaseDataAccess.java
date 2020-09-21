@@ -1,5 +1,6 @@
 package com.master.mobile.freedemy.classes.data;
 
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 
@@ -19,8 +20,10 @@ import com.master.mobile.freedemy.classes.models.CoursModel;
 import com.master.mobile.freedemy.ui.cours.CoursActivity;
 import com.master.mobile.freedemy.ui.home.HomeFragment;
 import com.master.mobile.freedemy.ui.home.HomeViewModel;
+import com.master.mobile.freedemy.ui.search.SearchFragment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +68,6 @@ public class FireBaseDataAccess {
                                 coursModel.setId(document.getId());
                                 coursModel.setTitre(document.get("titre").toString());
                                 coursModel.setDescription(document.get("description").toString());
-                                coursModel.setContenu(document.get("contenu").toString());
                                 coursModel.setDate(document.get("date").toString());
                                 model.getListeCours().add(coursModel);
                             }
@@ -116,5 +118,32 @@ public class FireBaseDataAccess {
                         public void onFailure(@NonNull Exception e) { }
                     });
         }
+    }
+
+    public void searchByKeyWord(String keyword, SearchFragment fragment, View root) {
+        HomeViewModel model = new HomeViewModel();
+        db.collection("cours")
+                .orderBy("date", Query.Direction.DESCENDING)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.get("titre").toString().toLowerCase().contains(keyword.toLowerCase()) || document.get("description").toString().toLowerCase().contains(keyword.toLowerCase())) {
+                                    CoursModel coursModel = new CoursModel();
+                                    coursModel.setId(document.getId());
+                                    coursModel.setTitre(document.get("titre").toString());
+                                    coursModel.setDescription(document.get("description").toString());
+                                    coursModel.setDate(document.get("date").toString());
+                                    model.getListeCours().add(coursModel);
+                                }
+                            }
+                            fragment.putDataCours(model, root);
+                        } else {
+                            fragment.putErrorCours(root);
+                        }
+                    }
+                });
     }
 }
